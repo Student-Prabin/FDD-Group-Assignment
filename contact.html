@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | APU Sports Hub</title>
+<meta name="description" content="Get in touch with APU Sports Hub or join a club.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="utility-bar">
+  <div class="container">
+    <span>ASIA PACIFIC UNIVERSITY &mdash; STUDENT SPORTS ORGANISATIONS</span>
+    <span>SEASON 2025/26</span>
+  </div>
+</div>
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand__mark">A</span>
+      APU SPORTS HUB
+    </a>
+    <nav>
+      <ul class="nav-links">
+      <li><a href="index.html" class="">Home</a></li>
+      <li><a href="about.html" class="">About</a></li>
+      <li><a href="football-overview.html" class="">Football</a></li>
+      <li><a href="basketball-overview.html" class="">Basketball</a></li>
+      <li><a href="swimming-overview.html" class="">Swimming</a></li>
+      <li><a href="tennis-overview.html" class="">Tennis</a></li>
+      <li><a href="news.html" class="">News</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</header>
+<div class="ticker">
+  <div class="ticker__track" id="tickerTrack"></div>
+</div>
+<main id="main">
+<section class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+    <span class="eyebrow">Get In Touch</span>
+    <h1>Contact &amp; Join a Club</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+    <div>
+      <h2 style="font-size:1.3rem;">Send us a message</h2>
+      <form id="contactForm" novalidate>
+        <div class="form-grid">
+          <div>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name">
+            <div class="field-error" id="nameError"></div>
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email">
+            <div class="field-error" id="emailError"></div>
+          </div>
+          <div class="full">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Select a subject</option>
+              <option value="join">Joining a Club</option>
+              <option value="fixtures">Fixtures &amp; Schedule</option>
+              <option value="sponsorship">Sponsorship</option>
+              <option value="other">Other Enquiry</option>
+            </select>
+            <div class="field-error" id="subjectError"></div>
+          </div>
+          <div class="full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+            <div class="field-error" id="messageError"></div>
+          </div>
+          <div class="full">
+            <button type="submit" class="btn">Send Message</button>
+          </div>
+          <div class="full">
+            <div class="form-status" id="formStatus"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div>
+      <h2 style="font-size:1.3rem;">Visit us</h2>
+      <p>APU Sports Complex, Asia Pacific University of Technology &amp; Innovation, Technology Park Malaysia, Bukit Jalil, 57000 Kuala Lumpur.</p>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps?q=Asia+Pacific+University+of+Technology+and+Innovation&output=embed" title="Map to Asia Pacific University" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>APU Sports Hub</h4>
+        <p>The official home of student-run sports organisations at Asia Pacific University &mdash; football, basketball, swimming and tennis.</p>
+      </div>
+      <div>
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="football-overview.html">Football</a></li>
+          <li><a href="basketball-overview.html">Basketball</a></li>
+          <li><a href="swimming-overview.html">Swimming</a></li>
+          <li><a href="tennis-overview.html">Tennis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="news.html">News &amp; Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>APU Sports Complex</li>
+          <li>Technology Park Malaysia</li>
+          <li>Bukit Jalil, Kuala Lumpur</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> APU Sports Hub &mdash; Student Group Project, CT053-3-1</span>
+      <span>Built by Team &mdash; FDD Group Assignment</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>

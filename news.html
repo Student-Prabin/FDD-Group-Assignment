@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Events | APU Sports Hub</title>
+<meta name="description" content="Latest news, match reports and league standings.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="utility-bar">
+  <div class="container">
+    <span>ASIA PACIFIC UNIVERSITY &mdash; STUDENT SPORTS ORGANISATIONS</span>
+    <span>SEASON 2025/26</span>
+  </div>
+</div>
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand__mark">A</span>
+      APU SPORTS HUB
+    </a>
+    <nav>
+      <ul class="nav-links">
+      <li><a href="index.html" class="">Home</a></li>
+      <li><a href="about.html" class="">About</a></li>
+      <li><a href="football-overview.html" class="">Football</a></li>
+      <li><a href="basketball-overview.html" class="">Basketball</a></li>
+      <li><a href="swimming-overview.html" class="">Swimming</a></li>
+      <li><a href="tennis-overview.html" class="">Tennis</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="contact.html" class="">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</header>
+<div class="ticker">
+  <div class="ticker__track" id="tickerTrack"></div>
+</div>
+<main id="main">
+<section class="page-head">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / News &amp; Events</div>
+    <span class="eyebrow">Newsroom</span>
+    <h1>News &amp; Standings</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="chip-row">
+      <button class="chip active" data-filter="all">All Sports</button>
+      <button class="chip" data-filter="football">Football</button>
+      <button class="chip" data-filter="basketball">Basketball</button>
+      <button class="chip" data-filter="swimming">Swimming</button>
+      <button class="chip" data-filter="tennis">Tennis</button>
+    </div>
+    <div class="news-grid">
+      <article class="news-card" data-sport="football">
+        <img src="https://picsum.photos/seed/news1/500/300" alt="Football news photo">
+        <div class="news-card__body">
+          <span class="eyebrow">Football</span>
+          <h3 style="font-size:1.05rem;">Falcons edge past Sunway in five-goal thriller</h3>
+          <p>Full match report and player reactions available at the club noticeboard.</p>
+        </div>
+      </article>
+      <article class="news-card" data-sport="basketball">
+        <img src="https://picsum.photos/seed/news2/500/300" alt="Basketball news photo">
+        <div class="news-card__body">
+          <span class="eyebrow">Basketball</span>
+          <h3 style="font-size:1.05rem;">Hoopers clinch tight 58-55 win over Taylor's</h3>
+          <p>Full match report and player reactions available at the club noticeboard.</p>
+        </div>
+      </article>
+      <article class="news-card" data-sport="swimming">
+        <img src="https://picsum.photos/seed/news3/500/300" alt="Swimming news photo">
+        <div class="news-card__body">
+          <span class="eyebrow">Swimming</span>
+          <h3 style="font-size:1.05rem;">Relay squad breaks club record at MASUM heats</h3>
+          <p>Full match report and player reactions available at the club noticeboard.</p>
+        </div>
+      </article>
+      <article class="news-card" data-sport="tennis">
+        <img src="https://picsum.photos/seed/news4/500/300" alt="Tennis news photo">
+        <div class="news-card__body">
+          <span class="eyebrow">Tennis</span>
+          <h3 style="font-size:1.05rem;">Mixed doubles pair through to Founder's Cup final</h3>
+          <p>Full match report and player reactions available at the club noticeboard.</p>
+        </div>
+      </article>
+      <article class="news-card" data-sport="football">
+        <img src="https://picsum.photos/seed/news5/500/300" alt="Football news photo">
+        <div class="news-card__body">
+          <span class="eyebrow">Football</span>
+          <h3 style="font-size:1.05rem;">Pre-season trials open for new intake students</h3>
+          <p>Full match report and player reactions available at the club noticeboard.</p>
+        </div>
+      </article>
+      <article class="news-card" data-sport="basketball">
+        <img src="https://picsum.photos/seed/news6/500/300" alt="Basketball news photo">
+        <div class="news-card__body">
+          <span class="eyebrow">Basketball</span>
+          <h3 style="font-size:1.05rem;">New assistant coach joins for 2026 season</h3>
+          <p>Full match report and player reactions available at the club noticeboard.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <span class="eyebrow">League Table</span>
+    <h2 style="margin-bottom:8px;">Club standings</h2>
+    <p style="margin-bottom:24px;">Click any column heading to sort. Use the filters above to narrow by sport.</p>
+    <div class="table-wrap">
+      <table class="stat-table" id="standingsTable">
+        <thead>
+          <tr>
+            <th data-key="team" data-type="text">Team</th>
+            <th data-key="played" data-type="number">Played</th>
+            <th data-key="wins" data-type="number">Wins</th>
+            <th data-key="draws" data-type="number">Draws</th>
+            <th data-key="losses" data-type="number">Losses</th>
+            <th data-key="points" data-type="number">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr data-sport="football">
+          <td data-cell="team">APU Falcons</td>
+          <td data-cell="played">8</td>
+          <td class="win" data-cell="wins">6</td>
+          <td data-cell="draws">1</td>
+          <td class="loss" data-cell="losses">1</td>
+          <td data-cell="points">19</td>
+        </tr>
+        <tr data-sport="football">
+          <td data-cell="team">INTI Ravens</td>
+          <td data-cell="played">8</td>
+          <td class="win" data-cell="wins">5</td>
+          <td data-cell="draws">2</td>
+          <td class="loss" data-cell="losses">1</td>
+          <td data-cell="points">17</td>
+        </tr>
+        <tr data-sport="basketball">
+          <td data-cell="team">APU Hoopers</td>
+          <td data-cell="played">10</td>
+          <td class="win" data-cell="wins">8</td>
+          <td data-cell="draws">0</td>
+          <td class="loss" data-cell="losses">2</td>
+          <td data-cell="points">16</td>
+        </tr>
+        <tr data-sport="basketball">
+          <td data-cell="team">Taylor's Titans</td>
+          <td data-cell="played">10</td>
+          <td class="win" data-cell="wins">7</td>
+          <td data-cell="draws">0</td>
+          <td class="loss" data-cell="losses">3</td>
+          <td data-cell="points">14</td>
+        </tr>
+        <tr data-sport="swimming">
+          <td data-cell="team">APU Swim Squad</td>
+          <td data-cell="played">6</td>
+          <td class="win" data-cell="wins">4</td>
+          <td data-cell="draws">0</td>
+          <td class="loss" data-cell="losses">2</td>
+          <td data-cell="points">12</td>
+        </tr>
+        <tr data-sport="tennis">
+          <td data-cell="team">APU Tennis</td>
+          <td data-cell="played">7</td>
+          <td class="win" data-cell="wins">5</td>
+          <td data-cell="draws">0</td>
+          <td class="loss" data-cell="losses">2</td>
+          <td data-cell="points">10</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>APU Sports Hub</h4>
+        <p>The official home of student-run sports organisations at Asia Pacific University &mdash; football, basketball, swimming and tennis.</p>
+      </div>
+      <div>
+        <h4>Sports</h4>
+        <ul>
+          <li><a href="football-overview.html">Football</a></li>
+          <li><a href="basketball-overview.html">Basketball</a></li>
+          <li><a href="swimming-overview.html">Swimming</a></li>
+          <li><a href="tennis-overview.html">Tennis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="news.html">News &amp; Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>APU Sports Complex</li>
+          <li>Technology Park Malaysia</li>
+          <li>Bukit Jalil, Kuala Lumpur</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> APU Sports Hub &mdash; Student Group Project, CT053-3-1</span>
+      <span>Built by Team &mdash; FDD Group Assignment</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/standings.js"></script>
+</body>
+</html>
