@@ -6,6 +6,7 @@
 <title>Contact | APU Sports Hub</title>
 <meta name="description" content="Get in touch with APU Sports Hub or join a club.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="images/apu-logo.svg" type="image/svg+xml">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -18,7 +19,7 @@
 <header class="navbar">
   <div class="container">
     <a href="index.html" class="brand">
-      <span class="brand__mark">A</span>
+      <img src="./images/apu-logo.svg" alt="APU Sports Hub logo" class="brand__mark">
       APU SPORTS HUB
     </a>
     <nav>
@@ -26,8 +27,8 @@
       <li><a href="index.html" class="">Home</a></li>
       <li><a href="about.html" class="">About</a></li>
       <li><a href="football-overview.html" class="">Football</a></li>
-      <li><a href="basketball-overview.html" class="">Basketball</a></li>
-      <li><a href="swimming-overview.html" class="">Swimming</a></li>
+      <li><a href="volleyball-overview.html" class="">volleyball</a></li>
+      <li><a href="eSports-overview.html" class="">eSports</a></li>
       <li><a href="tennis-overview.html" class="">Tennis</a></li>
       <li><a href="news.html" class="">News</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
@@ -93,7 +94,7 @@
       <h2 style="font-size:1.3rem;">Visit us</h2>
       <p>APU Sports Complex, Asia Pacific University of Technology &amp; Innovation, Technology Park Malaysia, Bukit Jalil, 57000 Kuala Lumpur.</p>
       <div class="map-embed">
-        <iframe src="https://www.google.com/maps?q=Asia+Pacific+University+of+Technology+and+Innovation&output=embed" title="Map to Asia Pacific University" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.3613614423416!2d85.33068377546734!3d27.70612697618324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a00bd8d7c1%3A0xe01225b704668023!2sLord%20Buddha%20Education%20Foundation-%20LBEF%20College%20(The%20First%20IT%20College%20of%20Nepal)!5e0!3m2!1sen!2snp!4v1783916328680!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
     </div>
   </div>
@@ -105,14 +106,14 @@
     <div class="footer-grid">
       <div>
         <h4>APU Sports Hub</h4>
-        <p>The official home of student-run sports organisations at Asia Pacific University &mdash; football, basketball, swimming and tennis.</p>
+        <p>The official home of student-run sports organisations at Asia Pacific University &mdash; football, volleyball, eSports and tennis.</p>
       </div>
       <div>
         <h4>Sports</h4>
         <ul>
           <li><a href="football-overview.html">Football</a></li>
-          <li><a href="basketball-overview.html">Basketball</a></li>
-          <li><a href="swimming-overview.html">Swimming</a></li>
+          <li><a href="volleyball-overview.html">volleyball</a></li>
+          <li><a href="eSports-overview.html">eSports</a></li>
           <li><a href="tennis-overview.html">Tennis</a></li>
         </ul>
       </div>
@@ -139,6 +140,25 @@
     </div>
   </div>
 </footer>
+<!-- EmailJS SDK — sends the contact form without a backend server -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  /* =========================================================
+     EmailJS configuration
+     Replace the three placeholder values below with the ones
+     from your EmailJS dashboard (https://dashboard.emailjs.com):
+       1. PUBLIC_KEY  -> Account > General > Public Key
+       2. SERVICE_ID  -> Email Services > your connected service
+       3. TEMPLATE_ID -> Email Templates > your template
+     The template should use variables matching this form's
+     field names: name, email, subject, message.
+     ========================================================= */
+  (function () {
+    emailjs.init({ publicKey: "ekMFCGQ9RGBo9r7be" });
+  })();
+  window.EMAILJS_SERVICE_ID = "service_hm6rzfg";
+  window.EMAILJS_TEMPLATE_ID = "template_k9uv1i4";
+</script>
 <script src="js/main.js"></script>
 <script src="js/contact.js"></script>
 </body>

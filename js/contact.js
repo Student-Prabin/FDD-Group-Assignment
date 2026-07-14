@@ -1,7 +1,9 @@
 /* =========================================================
-   contact.js — client-side form validation
+   contact.js — client-side form validation + EmailJS sending
    Owner: Person A
    Used on: contact.html
+   Requires: the EmailJS SDK + config block loaded in contact.html
+   before this file (window.EMAILJS_SERVICE_ID / EMAILJS_TEMPLATE_ID).
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -59,8 +61,34 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    status.textContent = 'Thanks, ' + name.value.trim().split(' ')[0] + '! Your message has been received. The relevant club committee will reply within 2 working days.';
-    status.classList.add('show', 'ok');
-    form.reset();
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var firstName = name.value.trim().split(' ')[0];
+
+    if (typeof emailjs === 'undefined' || !window.EMAILJS_SERVICE_ID || window.EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
+      status.textContent = 'email not added ';
+      status.classList.add('show', 'err');
+      return;
+    }
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+    status.textContent = 'Sending your message…';
+    status.classList.add('show');
+
+    emailjs.sendForm(window.EMAILJS_SERVICE_ID, window.EMAILJS_TEMPLATE_ID, form)
+      .then(function () {
+        status.classList.remove('err');
+        status.textContent = 'Thanks, ' + firstName + '! Your message has been received. The relevant club committee will reply within 2 working days.';
+        status.classList.add('ok');
+        form.reset();
+      })
+      .catch(function (error) {
+        console.error('EmailJS error:', error);
+        status.classList.remove('ok');
+        status.textContent = 'Sorry, something went wrong sending your message. Please try again or email us directly.';
+        status.classList.add('err');
+      })
+      .finally(function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
+      });
   });
 });

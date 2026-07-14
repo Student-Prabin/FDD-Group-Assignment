@@ -15,8 +15,8 @@ Making sure sort state, filter state, and the DOM stay in sync without conflicti
 
 
 # Sadikshya Shrestha
-Football + Basketball Pages
-Files: football-overview/team/fixtures.html, basketball-overview/team/fixtures.html, js/gallery.jss
+Football + volleyball Pages
+Files: football-overview/team/fixtures.html, volleyball-overview/team/fixtures.html, js/gallery.jss
 What I am Doing:
 Roster tables, fixture history tables, and the click-to-enlarge photo lightbox (open, close on click-outside, close on Escape key).
 

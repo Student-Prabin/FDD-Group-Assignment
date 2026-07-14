@@ -45,4 +45,38 @@ document.addEventListener('DOMContentLoaded', function () {
     // duplicate content so the marquee loops seamlessly
     tickerTrack.innerHTML = html + html;
   }
+
+  /* ---- Scroll reveal: animate sections/cards in the first time they appear ---- */
+  (function () {
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced || !('IntersectionObserver' in window)) return;
+
+    // groups of repeating elements + the direction they should animate from
+    var groups = [
+      { selector: '.card-grid > *, .news-grid > *, .roster-grid > *, .gallery-grid > img, .image-grid > img', dir: 'left' },
+      { selector: '.two-col > *, .hero__grid > *', dir: 'up' }
+    ];
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var delay = parseInt(el.getAttribute('data-reveal-delay'), 10) || 0;
+        window.setTimeout(function () { el.classList.remove('reveal-hidden'); }, delay);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    groups.forEach(function (group) {
+      var seen = new WeakMap(); // parent -> next stagger index
+      document.querySelectorAll(group.selector).forEach(function (el) {
+        var parent = el.parentElement;
+        var idx = seen.get(parent) || 0;
+        el.classList.add('reveal', 'reveal--' + group.dir, 'reveal-hidden');
+        el.setAttribute('data-reveal-delay', Math.min(idx * 90, 360));
+        seen.set(parent, idx + 1);
+        observer.observe(el);
+      });
+    });
+  })();
 });

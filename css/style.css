@@ -6,12 +6,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root{
-  --ink:        #0b1b2b;
+  --ink:        #162036;
   --ink-soft:   #12253b;
   --ink-card:   #16304d;
   --ink-card-2: #1b3a5c;
-  --amber:      #46cd4f;
-  --amber-dark: #c97f0f;
+  --amber:      #4A9EDE;
+  --amber-dark: #ca361c;
   --turf:       #1f7a4d;
   --red:        #c6402c;
   --chalk:      #f5f3ee;
@@ -33,6 +33,7 @@ body{
   font-family:var(--font-body);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 img{ max-width:100%; display:block; }
 a{ color:inherit; text-decoration:none; }
@@ -57,6 +58,26 @@ p{ margin:0 0 1em; color:var(--chalk-dim); }
   text-transform:uppercase;
   display:inline-block;
   margin-bottom:10px;
+}
+.image-grid {
+  display: grid;
+  /* Creates 3 columns that share space equally, up to a max of 300px each */
+  grid-template-columns: repeat(3, minmax(100px, 300px)); 
+  gap: 20px;            /* Adds spacing between the images */
+  justify-content: center; /* Centers the entire grid horizontally on the page */
+  align-items: center;     /* Centers items vertically if they have different heights */
+  padding: 20px;
+}
+.image-highlight {
+  width: 100%;          /* Makes sure the image fills its grid cell width */
+  height: 250px;        /* Set a fixed height so object-fit works perfectly */
+  object-fit: cover;    /* Crops the image cleanly without stretching it */
+  border-radius: 8px;   /* Optional: adds nice rounded corners */
+}
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: 1fr; /* Stacks them in 1 column on mobile */
+  }
 }
 .btn{
   display:inline-block;
@@ -99,11 +120,13 @@ p{ margin:0 0 1em; color:var(--chalk-dim); }
   backdrop-filter:blur(6px);
 }
 .navbar .container{ display:flex; align-items:center; justify-content:space-between; height:72px; }
-.brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-size:1.15rem; letter-spacing:.03em; }
+.brand{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:1.15rem; letter-spacing:.03em; }
 .brand__mark{
-  width:34px; height:34px; background:var(--amber); color:var(--ink);
-  display:flex; align-items:center; justify-content:center; font-weight:700; border-radius:3px;
+  width:38px; height:38px; flex-shrink:0; display:block;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.35));
+  transition:transform .18s ease;
 }
+.brand:hover .brand__mark{ transform:translateY(-1px) scale(1.04); }
 .nav-links{ display:flex; gap:4px; align-items:center; }
 .nav-links a{
   font-family:var(--font-display); font-size:.86rem; text-transform:uppercase;
@@ -167,6 +190,7 @@ p{ margin:0 0 1em; color:var(--chalk-dim); }
   transition:transform .18s ease, border-color .18s ease;
 }
 .ticket:hover{ transform:translateY(-4px); border-color:var(--amber); }
+.ticket.reveal{ transition:transform .18s ease, border-color .18s ease, opacity .65s cubic-bezier(.16,.84,.44,1), translate .65s cubic-bezier(.16,.84,.44,1); }
 .ticket__img{ height:150px; width:100%; object-fit:cover; }
 .ticket__body{ padding:18px 18px 22px; position:relative; }
 .ticket__notch-row{ display:flex; align-items:center; margin:0 -1px; height:0; position:relative; }
@@ -208,14 +232,59 @@ table.stat-table td.loss{ color:var(--red); }
 
 /* ---------- News / article cards ---------- */
 .news-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.news-card{ background:var(--ink-card); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
-.news-card img{ height:160px; object-fit:cover; }
+.news-card{
+  background:var(--ink-card); border:1px solid var(--line); border-radius:6px; overflow:hidden;
+  cursor:pointer; text-align:left; width:100%; display:block; font:inherit; color:inherit;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.news-card:hover, .news-card:focus-visible{
+  transform:translateY(-4px); border-color:var(--amber);
+  box-shadow:0 10px 24px rgba(0,0,0,0.28);
+}
+.news-card.reveal{
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease,
+             opacity .65s cubic-bezier(.16,.84,.44,1), translate .65s cubic-bezier(.16,.84,.44,1);
+}
+.news-card img{ height:160px; width:100%; object-fit:cover; margin: auto; }
 .news-card__body{ padding:18px; }
 .news-card .eyebrow{ margin-bottom:8px; }
+.news-card__read{
+  display:inline-block; margin-top:10px; font-family:var(--font-mono); font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--amber);
+}
+
+/* ---------- News modal ---------- */
+.news-modal{
+  position:fixed; inset:0; background:rgba(4,10,16,0.82); display:none;
+  align-items:center; justify-content:center; z-index:200; padding:24px;
+}
+.news-modal.open{ display:flex; }
+.news-modal__card{
+  background:var(--ink-card); border:1px solid var(--line); border-radius:8px;
+  max-width:640px; width:100%; max-height:88vh; overflow-y:auto; position:relative;
+  transform:translateY(18px) scale(.98); opacity:0; transition:transform .28s ease, opacity .28s ease;
+}
+.news-modal.open .news-modal__card{ transform:translateY(0) scale(1); opacity:1; }
+.news-modal__img{ width:100%; height:240px; object-fit:cover; display:block; }
+.news-modal__body{ padding:26px 28px 30px; }
+.news-modal__date{ font-family:var(--font-mono); font-size:.75rem; color:var(--chalk-dim); margin-bottom:6px; display:block; }
+.news-modal__body h3{ font-size:1.4rem; margin-bottom:14px; }
+.news-modal__body p{ margin-bottom:1em; }
+.news-modal__close{
+  position:absolute; top:16px; right:16px; background:rgba(8,19,33,0.85); border:2px solid var(--chalk);
+  color:var(--chalk); width:38px; height:38px; border-radius:50%; font-size:1rem; cursor:pointer; line-height:1;
+  display:flex; align-items:center; justify-content:center; z-index:2;
+}
+.news-modal__close:hover{ background:var(--amber); border-color:var(--amber); color:var(--ink); }
+@media (max-width:480px){
+  .news-modal__img{ height:180px; }
+  .news-modal__body{ padding:20px 20px 24px; }
+  .news-modal__body h3{ font-size:1.2rem; }
+}
 
 /* ---------- Gallery + lightbox ---------- */
 .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.gallery-grid img{ height:130px; width:100%; object-fit:cover; border-radius:4px; cursor:pointer; border:1px solid var(--line); }
+.gallery-grid img{ height:200px; width:100%; object-fit:cover; border-radius:4px; cursor:pointer; border:1px solid var(--line); }
 .gallery-grid img:hover{ outline:2px solid var(--amber); }
 .lightbox{
   position:fixed; inset:0; background:rgba(4,10,16,0.92); display:none;
@@ -259,6 +328,24 @@ input:focus,select:focus,textarea:focus{ border-color:var(--amber); outline:none
 /* ---------- Two column layout ---------- */
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
 
+/* =========================================================
+   Scroll reveal — sections/cards animate in the first time
+   they appear on screen (progressive enhancement via JS).
+   Uses the standalone `translate` property (not `transform`)
+   so it never fights with hover-lift transitions below.
+   ========================================================= */
+.reveal{
+  transition:opacity .65s cubic-bezier(.16,.84,.44,1), translate .65s cubic-bezier(.16,.84,.44,1);
+  will-change:opacity, translate;
+}
+.reveal-hidden.reveal--left{ opacity:0; translate: -52px 0; }
+.reveal-hidden.reveal--right{ opacity:0; translate: 52px 0; }
+.reveal-hidden.reveal--up{ opacity:0; translate: 0 36px; }
+@media (prefers-reduced-motion:reduce){
+  .reveal{ transition:none !important; }
+  .reveal-hidden{ opacity:1 !important; translate:0 0 !important; }
+}
+
 /* ---------- Footer ---------- */
 footer{ background:#081321; border-top:1px solid var(--line); padding:56px 0 28px; }
 .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; }
@@ -283,7 +370,13 @@ footer{ background:#081321; border-top:1px solid var(--line); padding:56px 0 28p
 /* =========================================================
    RESPONSIVE — Person D breakpoints
    ========================================================= */
+/* Tablet (large): tighten up spacing slightly before the main tablet breakpoint */
+@media (max-width:1100px){
+  .container{ padding:0 20px; }
+  .card-grid{ grid-template-columns:repeat(3,1fr); }
+}
 @media (max-width:980px){
+  .hero{ padding:64px 0 48px; }
   .hero__grid{ grid-template-columns:1fr; }
   .card-grid{ grid-template-columns:repeat(2,1fr); }
   .news-grid{ grid-template-columns:repeat(2,1fr); }
@@ -291,18 +384,37 @@ footer{ background:#081321; border-top:1px solid var(--line); padding:56px 0 28p
   .gallery-grid{ grid-template-columns:repeat(3,1fr); }
   .footer-grid{ grid-template-columns:1fr 1fr; }
   .two-col{ grid-template-columns:1fr; }
+  .section{ padding:56px 0; }
 }
 @media (max-width:720px){
+  .navbar .container{ height:64px; }
   .nav-links{
-    position:absolute; top:72px; left:0; right:0; background:var(--ink);
+    position:absolute; top:64px; left:0; right:0; background:var(--ink);
     flex-direction:column; align-items:stretch; border-bottom:1px solid var(--line);
-    display:none; padding:8px 24px 18px;
+    display:none; padding:8px 24px 18px; max-height:calc(100vh - 64px); overflow-y:auto;
   }
   .nav-links.open{ display:flex; }
+  .nav-links a{ padding:12px 8px; }
   .nav-toggle{ display:block; }
   .card-grid,.news-grid,.roster-grid{ grid-template-columns:1fr; }
   .gallery-grid{ grid-template-columns:repeat(2,1fr); }
   .form-grid{ grid-template-columns:1fr; }
-  .utility-bar .container{ font-size:.65rem; }
+  .utility-bar .container{ font-size:.65rem; flex-wrap:wrap; gap:2px; }
   .scoreboard__clock{ flex-wrap:wrap; }
+  .footer-bottom{ flex-direction:column; text-align:center; }
+  .hero__cta{ flex-direction:column; align-items:stretch; }
+  .hero__cta .btn{ text-align:center; }
+}
+@media (max-width:480px){
+  .container{ padding:0 16px; }
+  .hero{ padding:48px 0 36px; }
+  .hero h1{ font-size:clamp(1.9rem,8vw,2.4rem); }
+  .hero p.lead{ font-size:.95rem; }
+  .section{ padding:44px 0; }
+  .footer-grid{ grid-template-columns:1fr; gap:26px; }
+  .gallery-grid{ grid-template-columns:1fr 1fr; gap:10px; }
+  .scoreboard{ padding:18px; }
+  .scoreboard__num{ font-size:1.5rem; }
+  .brand{ font-size:1rem; }
+  table.stat-table{ font-size:.84rem; min-width:520px; }
 }
